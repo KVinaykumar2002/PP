@@ -1,6 +1,6 @@
 import express from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 
@@ -9,19 +9,25 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// ✅ CORS Setup
-app.use(cors());
+// ✅ Manual CORS Setup - Replace cors package with manual headers
+app.use((req, res, next) => {
+  // Set CORS headers for all requests
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, HEAD');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control');
+  res.header('Access-Control-Max-Age', '3600');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  
+  next();
+});
 
 // ✅ Body parser
 app.use(express.json());
-
-// ✅ Handle preflight requests explicitly
-app.options('*', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin, X-Requested-With, Accept');
-  res.sendStatus(200);
-});
 
 // ✅ MongoDB Connection
 const connectDB = async () => {
