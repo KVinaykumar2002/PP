@@ -10,25 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // ✅ CORS Setup
-const allowedOrigins = [
- // 'http://localhost:5173', // Vite default port for development
-  //'http://localhost:3000', // React default port
-  'https://pp-vq1x.onrender.com', // Backend self-requests
-  // Add your frontend domain here when deployed
-  // 'https://your-frontend-domain.com'
-];
-
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (mobile apps, etc.)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: '*', // Allow all origins for now - update this with your frontend domain when deployed
   credentials: true
 }));
 

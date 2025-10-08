@@ -1,14 +1,5 @@
-// API Base URL - Environment aware
-const getApiBaseUrl = () => {
-  // In production, use the deployed backend URL
-  if (import.meta.env.PROD) {
-    return 'https://pp-vq1x.onrender.com/api';
-  }
-  // In development, check if custom API URL is set
-  return import.meta.env.VITE_API_URL || 'https://pp-vq1x.onrender.com/api';
-};
-
-const API_BASE_URL = getApiBaseUrl();
+// API Base URL - Uses deployed backend
+const API_BASE_URL = 'https://pp-vq1x.onrender.com/api';
 
 // JWT Authentication Service
 class AuthService {
