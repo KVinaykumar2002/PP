@@ -10,12 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // ✅ CORS Setup
-app.use(cors({
-  origin: '*', // Allow all origins
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept'],
-  credentials: false // Don't use credentials with wildcard origin
-}));
+app.use(cors());
 
 // ✅ Body parser
 app.use(express.json());
