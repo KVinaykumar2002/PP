@@ -11,11 +11,22 @@ const PORT = process.env.PORT || 5001;
 
 // ✅ CORS Setup
 app.use(cors({
-  origin: '*', // Allow all origins for now - update this with your frontend domain when deployed
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept'],
+  credentials: false // Don't use credentials with wildcard origin
 }));
 
 // ✅ Body parser
 app.use(express.json());
+
+// ✅ Handle preflight requests explicitly
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin, X-Requested-With, Accept');
+  res.sendStatus(200);
+});
 
 // ✅ MongoDB Connection
 const connectDB = async () => {
