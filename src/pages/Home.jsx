@@ -46,7 +46,7 @@ export default function Home() {
               <span className="text-blue-600"> Practice Project</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              A complete authentication system built with React and Supabase.
+              A complete authentication system built with React and JWT.
               Sign up or login to access your personalized dashboard.
             </p>
           </div>
@@ -73,7 +73,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Secure Authentication</h3>
               <p className="text-gray-600">
-                Built with Supabase for enterprise-grade security and reliability.
+                Built with JWT for enterprise-grade security and reliability.
               </p>
             </div>
 

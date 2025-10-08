@@ -1,5 +1,14 @@
-// API Base URL
-const API_BASE_URL = 'http://localhost:5001/api';
+// API Base URL - Environment aware
+const getApiBaseUrl = () => {
+  // In production, use the deployed backend URL
+  if (import.meta.env.PROD) {
+    return 'https://pp-vq1x.onrender.com/api';
+  }
+  // In development, check if custom API URL is set
+  return import.meta.env.VITE_API_URL || 'https://pp-vq1x.onrender.com/api';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 // JWT Authentication Service
 class AuthService {
