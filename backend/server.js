@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5001;
 
 // ✅ CORS Setup
 app.use(cors({
-  origin: '*', // Allow all origins for now - update this with your frontend domain when deployed
+  origin: 'prabhasonehero.netlify.app', // Allow all origins for now - update this with your frontend domain when deployed
   credentials: true
 }));
 
